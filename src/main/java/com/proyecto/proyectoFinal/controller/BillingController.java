@@ -127,7 +127,7 @@ public class BillingController {
             var response = Producto.builder()
                     .nombre(producto.getNombre())
                     .stock(producto.getStock())
-                    .precio(producto.getStock())
+                    .precio(producto.getPrecio())
                     .build();
             return productServices.saveProduct(response);
         }catch (Exception e){

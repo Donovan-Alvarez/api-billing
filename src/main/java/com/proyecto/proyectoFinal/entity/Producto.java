@@ -19,11 +19,11 @@ public class Producto {
     @Column(name = "stock", nullable = false, length = 10)
     private int stock;
     @Column(name = "precio", nullable = false)
-    private int precio;
+    private double precio;
 
     public Producto(){}
 
-    public Producto(long id, String nombre, int stock, int precio) {
+    public Producto(long id, String nombre, int stock, double precio) {
         this.id = id;
         this.nombre = nombre;
         this.stock = stock;
