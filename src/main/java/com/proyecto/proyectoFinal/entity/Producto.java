@@ -20,7 +20,6 @@ public class Producto {
     private int stock;
     @Column(name = "precio", nullable = false)
     private double precio;
-
     public Producto(){}
 
     public Producto(long id, String nombre, int stock, double precio) {

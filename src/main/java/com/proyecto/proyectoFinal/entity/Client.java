@@ -40,12 +40,4 @@ public class Client {
 
     public Client() {}
 
-    public Client(String nombre, String apellido, String direccion, Integer telefono, String correo, Integer nit) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.nit = nit;
-    }
 }

@@ -1,11 +1,10 @@
 package com.proyecto.proyectoFinal.controller;
 
+import com.proyecto.proyectoFinal.entity.Billing;
 import com.proyecto.proyectoFinal.entity.Client;
 import com.proyecto.proyectoFinal.entity.Producto;
 import com.proyecto.proyectoFinal.entity.Proveedores;
-import com.proyecto.proyectoFinal.services.ClientServices;
-import com.proyecto.proyectoFinal.services.ProductServices;
-import com.proyecto.proyectoFinal.services.ProveedorService;
+import com.proyecto.proyectoFinal.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +21,8 @@ public class BillingController {
     private ProveedorService proveedorService;
     @Autowired
     private ProductServices productServices;
+    @Autowired
+    private BillingService billingService;
 
     //Clientes
     @GetMapping("/list-clientes")
@@ -153,5 +154,24 @@ public class BillingController {
         }
     }
 
+    //Factuación
+    @PostMapping("/save-facturacion")
+    public Billing saveBilling (@RequestBody Billing billing){
+        try{
+            var response = billingService.saveBilling(billing);
+            return response;
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    @GetMapping("/list-facturacion")
+    public List<Billing> listBilling(){
+        try {
+            return billingService.listBilling();
+        }catch (Exception e){
+            throw e;
+        }
+    }
 
 }

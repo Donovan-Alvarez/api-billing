@@ -21,18 +21,11 @@ public class Proveedores {
     @Column(name = "correo", nullable = false, length = 50)
     private String correo;
 
-    public Proveedores(String nombre, String descripcion, String correo) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.correo = correo;
-    }
-
-    public Proveedores(){}
-
     public Proveedores(long id, String nombre, String descripcion, String correo) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.correo = correo;
     }
+    public Proveedores(){}
 }
