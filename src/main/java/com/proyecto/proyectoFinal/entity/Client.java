@@ -12,8 +12,8 @@ import javax.persistence.*;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
+    @SequenceGenerator(name = "client_generator", allocationSize = 1)
+    private int id;
     @Column(name = "nombre", nullable = false, length = 30)
     private String nombre;
     @Column(name = "apellido", nullable = false, length = 30)
@@ -27,8 +27,11 @@ public class Client {
     @Column(name = "nit", nullable = false)
     private Integer nit;
 
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+    private Billing billing;
 
-    public Client(Long id, String nombre, String apellido, String direccion, Integer telefono, String correo, Integer nit) {
+
+    public Client(int id, String nombre, String apellido, String direccion, Integer telefono, String correo, Integer nit, Billing billing) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -36,6 +39,7 @@ public class Client {
         this.telefono = telefono;
         this.correo = correo;
         this.nit = nit;
+        this.billing = billing;
     }
 
     public Client() {}

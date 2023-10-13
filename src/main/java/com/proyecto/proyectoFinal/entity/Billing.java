@@ -13,28 +13,25 @@ import java.util.List;
 @SuperBuilder
 public class Billing {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "billing_generator")
+    @SequenceGenerator(name = "billing_generator", allocationSize = 1)
     private long id;
     @Column(name = "numeroFactura", nullable = false)
     private int numeroFactura;
-    @OneToOne
-    private Client client;
     @Column(name = "fecha", nullable = false)
     private String fecha;
-    @ManyToOne(targetEntity = Producto.class, cascade=CascadeType.ALL)
-    @JoinColumns({ @JoinColumn(name = "product_id", referencedColumnName = "id") })
-    private Producto producto;
     @Column(name = "total", nullable = false)
     private double total;
+    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    public Billing(long id, int numeroFactura, Client client, String fecha, Producto producto, double total) {
+    public Billing(long id, int numeroFactura, String fecha, double total, Client client) {
         this.id = id;
         this.numeroFactura = numeroFactura;
-        this.client = client;
         this.fecha = fecha;
-        this.producto = producto;
         this.total = total;
+        this.client = client;
     }
 
     public Billing(){}

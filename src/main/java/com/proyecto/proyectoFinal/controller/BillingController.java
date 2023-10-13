@@ -49,6 +49,7 @@ public class BillingController {
     @PostMapping("/save-client")
     public Client saveClient(@RequestBody Client client){
         try{
+            LOGGER.info("REQUEST CLIENTE " + client);
             var response = Client.builder()
                     .nombre(client.getNombre())
                     .apellido(client.getApellido())
@@ -158,6 +159,7 @@ public class BillingController {
     @PostMapping("/save-facturacion")
     public Billing saveBilling (@RequestBody Billing billing){
         try{
+            LOGGER.info("REQUEST" +  billing);
             var response = billingService.saveBilling(billing);
             return response;
         }catch (Exception e){
