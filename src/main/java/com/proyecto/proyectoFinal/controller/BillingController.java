@@ -126,12 +126,7 @@ public class BillingController {
     @PostMapping("/save-producto")
     public Producto saveProduct(@RequestBody Producto producto){
         try{
-            var response = Producto.builder()
-                    .nombre(producto.getNombre())
-                    .stock(producto.getStock())
-                    .precio(producto.getPrecio())
-                    .build();
-            return productServices.saveProduct(response);
+            return productServices.saveProduct(producto);
         }catch (Exception e){
             throw e;
         }

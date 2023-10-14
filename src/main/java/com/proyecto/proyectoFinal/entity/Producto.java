@@ -1,14 +1,22 @@
 package com.proyecto.proyectoFinal.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Product")
 @Data
 @SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +28,7 @@ public class Producto {
     private int stock;
     @Column(name = "precio", nullable = false)
     private double precio;
-    public Producto(){}
 
-    public Producto(long id, String nombre, int stock, double precio) {
-        this.id = id;
-        this.nombre = nombre;
-        this.stock = stock;
-        this.precio = precio;
-    }
+
+
 }

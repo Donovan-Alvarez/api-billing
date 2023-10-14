@@ -1,9 +1,13 @@
 package com.proyecto.proyectoFinal.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,28 +15,29 @@ import java.util.List;
 @Table(name = "Billing")
 @Data
 @SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Billing {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "billing_generator")
-    @SequenceGenerator(name = "billing_generator", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
+
     @Column(name = "numeroFactura", nullable = false)
     private int numeroFactura;
+
     @Column(name = "fecha", nullable = false)
     private String fecha;
+
     @Column(name = "total", nullable = false)
     private double total;
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Client client;
 
-    public Billing(long id, int numeroFactura, String fecha, double total, Client client) {
-        this.id = id;
-        this.numeroFactura = numeroFactura;
-        this.fecha = fecha;
-        this.total = total;
-        this.client = client;
-    }
 
-    public Billing(){}
+
 }
