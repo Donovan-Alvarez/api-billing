@@ -38,6 +38,11 @@ public class Billing {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Client client;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "producto_id")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Producto producto;
+
 
 
 }
