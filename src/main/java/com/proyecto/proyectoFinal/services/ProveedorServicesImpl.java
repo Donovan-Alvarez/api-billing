@@ -1,5 +1,6 @@
 package com.proyecto.proyectoFinal.services;
 
+import com.proyecto.proyectoFinal.entity.Client;
 import com.proyecto.proyectoFinal.entity.Proveedores;
 import com.proyecto.proyectoFinal.repository.ClientRepository;
 import com.proyecto.proyectoFinal.repository.SupplierRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProveedorServicesImpl implements ProveedorService {
@@ -26,5 +28,10 @@ public class ProveedorServicesImpl implements ProveedorService {
     @Override
     public void deleteSupplier(long id) {
         supplierRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<Proveedores> findById(long id){
+        return supplierRepository.findById(id);
     }
 }

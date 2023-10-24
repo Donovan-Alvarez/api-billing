@@ -34,6 +34,7 @@ public class BillingController {
             throw e;
         }
     }
+
     @GetMapping("/find-client/{id}")
     public Optional<Client> findClient(@PathVariable String id){
         try{
@@ -44,7 +45,6 @@ public class BillingController {
         }
 
     }
-
 
     @PostMapping("/save-client")
     public Client saveClient(@RequestBody Client client){
@@ -65,6 +65,7 @@ public class BillingController {
             throw e;
         }
     }
+
     @DeleteMapping("/delete-client/{id}")
     public void deleteClient(@PathVariable String id){
         try{
@@ -84,6 +85,17 @@ public class BillingController {
             LOGGER.error("ocurrio un error al listar proveedores");
             throw e;
         }
+    }
+
+    @GetMapping("/find-provider/{id}")
+    public Optional<Proveedores> findProvider(@PathVariable String id){
+        try{
+            return proveedorService.findById(Long.parseLong(id));
+        }catch (Exception e){
+            LOGGER.error("Ocurrio un error al buscar proveedor", e);
+            throw e;
+        }
+
     }
 
     @PostMapping("/save-proveedor")
