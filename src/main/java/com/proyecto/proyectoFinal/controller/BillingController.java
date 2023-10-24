@@ -66,10 +66,9 @@ public class BillingController {
         }
     }
     @DeleteMapping("/delete-client/{id}")
-    public String deleteClient(@PathVariable String id){
+    public void deleteClient(@PathVariable String id){
         try{
             clientServices.deleteClient(Long.parseLong(id));
-            return "Se eliminó el dato correctamente";
         }catch (Exception e){
             LOGGER.error("ocurrio un error al eliminar el cliente");
             throw e;
@@ -104,10 +103,9 @@ public class BillingController {
     }
 
     @DeleteMapping("/delete-proveedor/{id}")
-    public String deleteSuppliers(@PathVariable String id){
+    public void deleteSuppliers(@PathVariable String id){
         try {
             proveedorService.deleteSupplier(Long.parseLong(id));
-            return "Se ha eliminado correctamente el proveedor";
         }catch (Exception e){
             LOGGER.error("ocurrio un error al eliminar proveedor", e);
             throw e;
@@ -132,10 +130,9 @@ public class BillingController {
         }
     }
     @DeleteMapping("/delete-producto/{id}")
-    public String deleteProduct(@PathVariable String id){
+    public void deleteProduct(@PathVariable String id){
         try {
             productServices.deleteProduct(Long.parseLong(id));
-            return "Se ha eliminado correctamente el producto";
         }catch (Exception e){
             throw e;
         }
