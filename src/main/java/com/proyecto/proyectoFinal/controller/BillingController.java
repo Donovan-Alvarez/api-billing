@@ -7,9 +7,12 @@ import com.proyecto.proyectoFinal.entity.Proveedores;
 import com.proyecto.proyectoFinal.services.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 @CrossOrigin(origins="http://localhost:4200")
 @RestController
@@ -161,11 +164,26 @@ public class BillingController {
 
     //Factuación
     @PostMapping("/save-facturacion")
-    public Billing saveBilling (@RequestBody Billing billing){
+    public ResponseEntity<Map<String, Object>> saveBilling (@RequestBody Billing billing){
         try{
             LOGGER.info("REQUEST" +  billing);
-            var response = billingService.saveBilling(billing);
-            return response;
+            Client client = billing.getClient();
+            Producto producto = billing.getProducto();
+
+            client = clientServices.getClientById(billing.getClient().getId());
+            producto = productServices.getProductById(billing.getProducto().getId());
+
+            billing.setClient(client);
+            billing.setProducto(producto);
+
+            var response = billingService.saveBilling(billing, client, producto);
+            LOGGER.info("RESPONSE BILLING" + response);
+
+            Map<String, Object> responseData = new HashMap<>();
+            responseData.put("billing", response);
+            responseData.put("client", client);
+            responseData.put("product", producto);
+            return ResponseEntity.ok(responseData);
         }catch (Exception e){
             throw e;
         }

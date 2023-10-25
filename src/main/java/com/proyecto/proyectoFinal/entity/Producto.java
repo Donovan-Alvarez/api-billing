@@ -30,7 +30,5 @@ public class Producto {
     private double precio;
 
 
-    //@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
-    //private List<Billing> billings = new ArrayList<>();
 
 }

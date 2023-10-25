@@ -12,4 +12,6 @@ public interface ClientServices {
     void deleteClient(long id);
 
     Optional<Client> findById(long id);
+
+    Client getClientById(Long id);
 }

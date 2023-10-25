@@ -35,7 +35,7 @@ public class  Client {
     @Column(name = "nit", nullable = false)
     private Integer nit;
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Billing> billing = new ArrayList<>();
+    //@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    //private List<Billing> billing = new ArrayList<>();
 
 }

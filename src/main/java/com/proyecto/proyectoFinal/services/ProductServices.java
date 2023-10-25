@@ -10,4 +10,6 @@ public interface ProductServices {
     Producto saveProduct(Producto producto);
     void deleteProduct(long id);
     Optional<Producto> findById(long id);
+
+    Producto getProductById(Long id);
 }

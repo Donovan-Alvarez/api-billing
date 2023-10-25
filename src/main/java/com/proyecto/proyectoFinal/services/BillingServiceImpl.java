@@ -1,6 +1,8 @@
 package com.proyecto.proyectoFinal.services;
 
 import com.proyecto.proyectoFinal.entity.Billing;
+import com.proyecto.proyectoFinal.entity.Client;
+import com.proyecto.proyectoFinal.entity.Producto;
 import com.proyecto.proyectoFinal.repository.BillingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class BillingServiceImpl implements BillingService{
     }
 
     @Override
-    public Billing saveBilling(Billing billing) {
+    public Billing saveBilling(Billing billing, Client client, Producto producto) {
         return billingRepository.save(billing);
     }
 }
