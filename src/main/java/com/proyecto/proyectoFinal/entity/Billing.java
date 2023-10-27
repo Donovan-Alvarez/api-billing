@@ -32,6 +32,9 @@ public class Billing {
     @Column(name = "total", nullable = false)
     private double total;
 
+    @Column(name = "cantidad", nullable = false)
+    private int cantidad;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
